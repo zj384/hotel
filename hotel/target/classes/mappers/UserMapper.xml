@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cj.dao.UserDao">
+
+	<!-- 通用单条查询 -->
+	<select id="findOneUser" resultType="com.cj.pojo.UserPojo">
+		select id,username,password,nickname,phone,Email,status,role from user
+		where 1=1
+		<if test="id!=null">and id=#{id}</if>
+		<if test="username!=null">and username=#{username}</if>
+		<if test="password!=null">and password=#{password}</if>
+		<if test="nickname!=null">and nickname=#{nickname}</if>
+		<if test="phone!=null">and phone=#{phone}</if>
+		<if test="Email!=null">and Email=#{email}</if>
+		<if test="status!=null">and status=#{status}</if>
+		<if test="role!=null">and role=#{role}</if>
+	</select>
+	
+	<!-- 添加数据 -->
+	<insert id="addUser">
+		insert into gd_user value(null,#{username},#{password},#{nickname},#{phone},#{email},#{address},#{control},#{status})
+	</insert>
+	
+	<!-- 修改数据 -->
+	<update id="updateUser">
+		update gd_user <set>
+		<if test="username!=null">username=#{username},</if>
+		<if test="password!=null">password=#{password},</if>
+		<if test="nickname!=null">nickname=#{nickname},</if>
+		<if test="phone!=null">phone=#{phone},</if>
+		<if test="email!=null">email=#{email},</if>
+		<if test="email!=null">address=#{address},</if>
+		<if test="control!=null">control=#{control},</if>
+		<if test="status!=null">status=#{status},</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+
+	
+</mapper>
