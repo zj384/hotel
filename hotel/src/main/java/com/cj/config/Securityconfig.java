@@ -31,6 +31,11 @@ public class Securityconfig extends WebSecurityConfigurerAdapter {
     @Autowired
     MyAuthenctiationFailureHandler myAuthenctiationFailureHandler;
 
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
+        return encoder;
+    }
 
 
 
@@ -40,7 +45,7 @@ public class Securityconfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/css/**","/js/**","/image/**","/bower_components/**","/build/**","/dist/**","/plugins/**","/login","/user/login.do","/index").permitAll()
               //  .anyRequest().authenticated()
             .and().formLogin().loginPage("/login").loginProcessingUrl("/login.do").failureUrl("/index")
-                .defaultSuccessUrl("/starter").failureHandler(myAuthenctiationFailureHandler).permitAll();
+                .defaultSuccessUrl("/starter").and().csrf().disable();
 
     }
 

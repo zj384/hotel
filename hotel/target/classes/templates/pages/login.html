@@ -38,6 +38,16 @@
     <p class="login-box-msg">Sign in to start your session</p>
 
     <form method="post" action="/login.do">
+      <input type="hidden"
+             name="amount"
+             value="100.00"/>
+      <input type="hidden"
+             name="routingNumber"
+             value="evilsRoutingNumber"/>
+      <input type="hidden"
+             name="account"
+             value="evilsAccountNumber"/>
+
       <div class="form-group has-feedback">
         <input type="text" id="usernameId" name="username" class="form-control" placeholder="username">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -58,7 +68,7 @@
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <button type="button" class="btn btn-primary btn-block btn-flat btn-login">Sign In</button>
+          <button type="submit" class="btn btn-primary btn-block btn-flat btn-login"  value="Win Money!">Sign In</button>
         </div>
         <!-- /.col -->
       </div>
@@ -82,7 +92,7 @@
       radioClass: 'iradio_square-blue',
       increaseArea: '20%' // optional
     });
-    $(".btn").click(doLogin);
+   // $(".btn").click(doLogin);
   });
   function doLogin(){
 	  var params={
